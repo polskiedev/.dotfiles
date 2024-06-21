@@ -2,7 +2,7 @@
 
 dotFilesDir="$1"
 winAppDataDir="$2"
-
+symlinkDir="$dotFilesDir/.vscode/.symlinks"
 # Todo:
 # Issue: $HOME not working on `[[ -d "dirname"]]` ???
 
@@ -25,6 +25,12 @@ if [ $# -ne 2 ]; then
     echo "Usage: $0 <param1> <param2>"
     exit 1
 fi
+
+# Check if the directory exists
+if ! [ -d "$(realpath "$symlinkDir")" ]; then
+    mkdir "$symlinkDir"
+fi
+
 # ######################################################################################
 # settings.json
 # ######################################################################################
@@ -32,7 +38,7 @@ filename="settings.json";
 wslVscodeSettingsJsonFile="$HOME/.vscode-server/data/Machine/$filename"
 dotFileVscodeSettingsJsonFile="$dotFilesDir/.vscode/config/$filename"
 winVscodeSettingsJsonFile="$winAppDataDir/Roaming/Code/User/$filename"
-symlinkVscodeSettingsJsonFile="$dotFilesDir/.vscode/.symlinks/$filename"
+symlinkVscodeSettingsJsonFile="$symlinkDir/$filename"
 
 if [ -f $winVscodeSettingsJsonFile ]; then
     echo "Deleting vscode $filename"
@@ -56,7 +62,7 @@ filename="keybindings.json";
 wslVscodeKeybindingsJsonFile="$HOME/.vscode-server/data/Machine/$filename"
 dotFileVscodeKeybindingsJsonFile="$dotFilesDir/.vscode/config/$filename"
 winVscodeKeybindingsJsonFile="$winAppDataDir/Roaming/Code/User/$filename"
-symlinkVscodeKeybindingsJsonFile="$dotFilesDir/.vscode/.symlinks/$filename"
+symlinkVscodeKeybindingsJsonFile="$symlinkDir/$filename"
 
 if [ -f $winVscodeKeybindingsJsonFile ]; then
     echo "Deleting vscode $filename"
