@@ -1,15 +1,16 @@
-.ignore/*
-.private/*
-.secure/*
-.local/*
-.polskie/*
-.example/*
-.cache/*
+.ignore/
+.private/
+.secure/
+.local/
+.polskie/
+.example/
+.cache/
+.symlinks/
 
 /vendor/
 node_modules/
-packages/*
-submodules/*
+packages/
+submodules/
 
 *.log
 *.tmp
