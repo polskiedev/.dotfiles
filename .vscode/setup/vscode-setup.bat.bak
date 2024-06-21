@@ -1,0 +1,5 @@
+# Untested
+# Open Command Prompt as Administrator
+mklink %APPDATA%\Code\User\settings.json C:\path\to\your\dotfiles\vscode\settings.json
+mklink %APPDATA%\Code\User\keybindings.json C:\path\to\your\dotfiles\vscode\keybindings.json
+mklink /D %APPDATA%\Code\User\snippets C:\path\to\your\dotfiles\vscode\snippets
