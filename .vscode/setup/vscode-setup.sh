@@ -3,27 +3,22 @@
 dotFilesDir="$1"
 winAppDataDir="$2"
 symlinkDir="$dotFilesDir/.vscode/.symlinks"
-# Todo:
-# Issue: $HOME not working on `[[ -d "dirname"]]` ???
-
-# echo "dotFilesDir: $dotFilesDir"
-# echo "winAppDataDir: $winAppDataDir"
-
-# if [[ -d "$dotFilesDir" ]]; then
-# 	echo "$dotFilesDir is not valid directory"
-# 	exit 1
-# fi
-
-# if [[ -d "$winAppDataDir" ]]; then
-# 	echo "$winAppDataDir is not valid directory"
-# 	exit 1
-# fi
 
 # Check if two parameters are passed
 if [ $# -ne 2 ]; then
     echo "Error: Two parameters are required."
     echo "Usage: $0 <param1> <param2>"
     exit 1
+fi
+
+if ! [ -d "$(realpath "$dotFilesDir")" ]; then
+	echo "$dotFilesDir is not valid directory"
+	exit 1
+fi
+
+if ! [ -d "$(realpath "$winAppDataDir")" ]; then
+	echo "$winAppDataDir is not valid directory"
+	exit 1
 fi
 
 # Check if the directory exists
