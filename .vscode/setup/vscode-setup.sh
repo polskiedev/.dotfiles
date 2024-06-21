@@ -18,6 +18,13 @@ winAppDataDir="$2"
 # 	echo "$winAppDataDir is not valid directory"
 # 	exit 1
 # fi
+
+# Check if two parameters are passed
+if [ $# -ne 2 ]; then
+    echo "Error: Two parameters are required."
+    echo "Usage: $0 <param1> <param2>"
+    exit 1
+fi
 # ######################################################################################
 # settings.json
 # ######################################################################################
@@ -32,11 +39,16 @@ if [ -f $winVscodeSettingsJsonFile ]; then
     rm "$winVscodeSettingsJsonFile"
 fi
 
-cp "$dotFileVscodeSettingsJsonFile" "$winVscodeSettingsJsonFile"
-echo "Copying: from '$dotFileVscodeSettingsJsonFile' to '$winVscodeSettingsJsonFile'"
+dotFileVscodeSettingsJsonFile="$(realpath "$dotFileVscodeSettingsJsonFile")"
+if [ -f "$dotFileVscodeSettingsJsonFile" ]; then
+    cp "$dotFileVscodeSettingsJsonFile" "$winVscodeSettingsJsonFile"
+    echo "Copying: from '$dotFileVscodeSettingsJsonFile' to '$winVscodeSettingsJsonFile'"
 
-ln -sf "$winVscodeSettingsJsonFile" "$symlinkVscodeSettingsJsonFile"
-echo "Create Symlink: from '$winVscodeSettingsJsonFile' to '$symlinkVscodeSettingsJsonFile'"
+    ln -sf "$winVscodeSettingsJsonFile" "$symlinkVscodeSettingsJsonFile"
+    echo "Create Symlink: from '$winVscodeSettingsJsonFile' to '$symlinkVscodeSettingsJsonFile'"
+fi
+
+
 # ######################################################################################
 # keybindings.json
 # ######################################################################################
@@ -51,11 +63,13 @@ if [ -f $winVscodeKeybindingsJsonFile ]; then
     rm "$winVscodeKeybindingsJsonFile"
 fi
 
-cp "$dotFileVscodeKeybindingsJsonFile" "$winVscodeKeybindingsJsonFile"
-echo "Copying: from '$dotFileVscodeKeybindingsJsonFile' to '$winVscodeKeybindingsJsonFile'"
+if [ -f "$(realpath "$dotFileVscodeKeybindingsJsonFile")" ]; then
+    cp "$dotFileVscodeKeybindingsJsonFile" "$winVscodeKeybindingsJsonFile"
+    echo "Copying: from '$dotFileVscodeKeybindingsJsonFile' to '$winVscodeKeybindingsJsonFile'"
 
-ln -sf "$winVscodeKeybindingsJsonFile" "$symlinkVscodeKeybindingsJsonFile"
-echo "Create Symlink: from '$winVscodeKeybindingsJsonFile' to '$symlinkVscodeKeybindingsJsonFile'"
+    ln -sf "$winVscodeKeybindingsJsonFile" "$symlinkVscodeKeybindingsJsonFile"
+    echo "Create Symlink: from '$winVscodeKeybindingsJsonFile' to '$symlinkVscodeKeybindingsJsonFile'"
+fi
 # ######################################################################################
 # Todo: @snippets?
 # ######################################################################################
