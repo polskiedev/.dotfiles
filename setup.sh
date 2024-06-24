@@ -1,5 +1,8 @@
 #!/bin/bash
 
+source .env/vars.sh
+source "$HOME/.devenv/common/sources.sh" #temp
+
 # Define the help function
 help() {
     echo "Usage: ./setup.sh [command]"
@@ -35,6 +38,13 @@ make_symlinks() {
 		
 	# 	__create_symlink "$target_dir" "$symlink_target"
 	# done
+
+    local file_path="$PATH_DOTFILES/git"
+    local file_name=".gitignore_global"
+
+    if [[ -f "$file_path/$file_name" ]]; then
+        create_symlink "$file_path/$file_name" "$HOME/$file_name"
+    fi
 }
 
 # Define the function to check and create a symlink
