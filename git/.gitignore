@@ -16,7 +16,6 @@
 /vendor/
 node_modules/
 submodules/
-packages/
 
 *.log
 *.tmp
