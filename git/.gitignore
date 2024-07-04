@@ -12,6 +12,7 @@
 .shared/
 .tmp/
 .temp/
+.backup/
 
 /vendor/
 node_modules/
