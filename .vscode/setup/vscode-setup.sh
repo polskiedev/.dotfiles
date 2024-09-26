@@ -37,18 +37,18 @@ symlinkVscodeSettingsJsonFile="$symlinkDir/$filename"
 
 if [ -f $winVscodeSettingsJsonFile ]; then
     echo "Deleting vscode $filename"
-    rm "$winVscodeSettingsJsonFile"
+    # rm "$winVscodeSettingsJsonFile"
 fi
 
 dotFileVscodeSettingsJsonFile="$(realpath "$dotFileVscodeSettingsJsonFile")"
 if [ -f "$dotFileVscodeSettingsJsonFile" ]; then
-    cp "$dotFileVscodeSettingsJsonFile" "$winVscodeSettingsJsonFile"
+    # cp "$dotFileVscodeSettingsJsonFile" "$winVscodeSettingsJsonFile"
     echo "Copying: from '$dotFileVscodeSettingsJsonFile' to '$winVscodeSettingsJsonFile'"
 
     ln -sf "$winVscodeSettingsJsonFile" "$symlinkVscodeSettingsJsonFile"
-    echo "Create Symlink: from '$winVscodeSettingsJsonFile' to '$symlinkVscodeSettingsJsonFile'"
+    # echo "Create Symlink: from '$winVscodeSettingsJsonFile' to '$symlinkVscodeSettingsJsonFile'"
 fi
-
+exit
 
 # ######################################################################################
 # keybindings.json

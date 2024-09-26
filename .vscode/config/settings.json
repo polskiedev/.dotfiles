@@ -2,6 +2,8 @@
 	"task.allowAutomaticTasks": "off",
 	"editor.formatOnSave": true,
 	"editor.formatOnPaste": true,
+	"files.trimFinalNewlines": true,
+	"files.insertFinalNewline": true,
 	"[php]": {
 		"editor.cursorStyle": "line",
 		"editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -44,4 +46,3 @@
 		"sash.hoverBorder": "#1f593d"
 	}
 }
-
